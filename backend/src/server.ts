@@ -1,21 +1,21 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import courseRoutes from './routes/course.routes'; // 👈 Make sure this path is correct
+import courseRoutes from './routes/course.routes';
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(express.json()); // 👈 to parse JSON body
+app.use(express.json());
 
 // Default route
 app.get('/', (_req, res) => {
   res.send('Hello from the backend!');
 });
 
-// 👇 Mount your course routes
+//course routes
 app.use('/api/courses', courseRoutes);
 
 mongoose
