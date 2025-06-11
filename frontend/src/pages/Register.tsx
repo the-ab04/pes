@@ -3,6 +3,26 @@ import { Link } from 'react-router-dom';
 export default function Register() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-100 to-purple-200">
+      {/* Home icon to route back to homepage */}
+            <Link to="/" style={{
+                position: 'absolute',
+                top: 24,
+                left: 24,
+                zIndex: 2,
+                background: '#fff',
+                borderRadius: '50%',
+                boxShadow: '0 2px 8px rgba(60,60,120,0.10)',
+                width: 40,
+                height: 40,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                textDecoration: 'none'
+            }} aria-label="Go to homepage">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <path d="M3 10.5L12 4l9 6.5V20a1 1 0 0 1-1 1h-5v-5h-6v5H4a1 1 0 0 1-1-1V10.5z" stroke="#667eea" strokeWidth="2" strokeLinejoin="round" fill="none"/>
+                </svg>
+            </Link>
       <div className="bg-white p-10 rounded-3xl shadow-2xl w-full max-w-md transition hover:scale-105 duration-300 ease-in-out">
         <div className="flex justify-center mb-6">
           <div className="bg-purple-500 text-white text-4xl rounded-full h-16 w-16 flex items-center justify-center shadow-lg transform hover:rotate-6 transition">
