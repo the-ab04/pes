@@ -2,10 +2,12 @@ import express, { Request, Response } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import connectDB from './config/db.ts';
+import adminRoutes from "./routes/adminRoutes.js";
 
 dotenv.config();
 
 connectDB();
+
 
 const app = express();
 app.use(cors());
@@ -17,3 +19,5 @@ app.get('/', (_req: Request, res: Response) => {
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+app.use("/api/admin", adminRoutes);
+
