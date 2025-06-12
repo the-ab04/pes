@@ -5,7 +5,7 @@ export const getAllCourses = async (_req: Request, res: Response) => {
   const courses = await Course.find();
   res.json(courses);
 };
-
+//For getting course by id
 export const getCourseById = async (req: Request, res: Response) => {
   const course = await Course.findById(req.params.id);
   course ? res.json(course) : res.status(404).json({ message: 'Course not found' });
