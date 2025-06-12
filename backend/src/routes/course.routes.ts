@@ -2,6 +2,7 @@ import { Router } from 'express';
 import {
   getAllCourses,
   getCourseById,
+  getCourseByCode,
   createCourse,
   updateCourse,
   deleteCourse
@@ -10,6 +11,7 @@ import {
 const router = Router();
 
 router.get('/', getAllCourses);
+router.get('/code/:code', getCourseByCode); // must come before /:id
 router.get('/:id', getCourseById);
 router.post('/', createCourse);
 router.put('/:id', updateCourse);
