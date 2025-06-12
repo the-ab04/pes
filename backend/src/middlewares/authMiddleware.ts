@@ -1,4 +1,3 @@
-
 import jwt from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
 //to do(need to enable after the user model is merged
