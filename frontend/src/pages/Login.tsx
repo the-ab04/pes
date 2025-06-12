@@ -1,6 +1,12 @@
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 export default function Login() {
+  const [showPassword, setShowPassword] = useState(false);
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+  
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-100 to-purple-200">
       {/* Home icon to route back to homepage */}
@@ -36,17 +42,54 @@ export default function Login() {
             placeholder="Enter your email" 
             className="w-full px-5 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 transition"
           />
-          <input 
-            type="password" 
-            placeholder="Enter your password" 
-            className="w-full px-5 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 transition"
-          />
+          {/* Password Field */}
+          <div className="relative w-full">
+            <input 
+              type={showPassword ? 'text' : 'password'} 
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full px-5 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 transition pr-12"
+            />
+            <span
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 cursor-pointer"
+              aria-label={showPassword ? "Hide password" : "Show password"}
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </span>
+          </div>
+
+          <div style={{
+            textAlign: 'right',
+            marginTop: '-0.75rem',
+            marginBottom: '1rem',
+            }}>
+            <button
+                type="button"
+                onClick={() => navigate('/forgot-password')}
+                style={{
+                    background: 'none',
+                    border: 'none',
+                    color: '#667eea',
+                    textDecoration: 'underline',
+                    cursor: 'pointer',
+                    fontSize: '0.9rem',
+                    padding: 0,
+                    margin: 0,
+                }}
+            >
+                Forgot password?
+            </button>
+          </div>
+          
           <button 
             type="submit" 
             className="w-full !bg-indigo-500 text-white py-3 rounded-lg hover:bg-indigo-600 transition shadow-md transform hover:scale-105"
           >
             Login
           </button>
+          
         </form>
         <p className="mt-6 text-center text-sm text-gray-600">
           Don’t have an account? <Link to="/register" className="text-indigo-600 font-semibold hover:underline">Register here</Link>
