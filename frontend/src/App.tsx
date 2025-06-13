@@ -5,7 +5,7 @@ import Register from './pages/Register';
 import AdminDashboard from './pages/AdminDashboard';
 import ForgotPassword from './pages/ForgotPassword';
 import StudentDashboard from './pages/StudentDashboard';
-
+import TeacherDashboard from './pages/TeacherDashboard'; 
 export default function App() {
   return (
     <Router>
@@ -16,6 +16,7 @@ export default function App() {
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/dashboard" element={<StudentDashboard />} />
+        <Route path="/teacher" element={<TeacherDashboard />} /> {/* add route */}
       </Routes>
     </Router>
   );
