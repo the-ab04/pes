@@ -16,7 +16,7 @@ export const getCourseById = async (req: Request, res: Response) => {
   course ? res.json(course) : res.status(404).json({ message: 'Course not found' });
 };
 
-// Get course by code (case-insensitive + trimmed)
+// Get course by subject code
 export const getCourseByCode = async (req: Request, res: Response) => {
   const rawCode = req.params.code;
   const code = rawCode.trim(); // remove spaces
