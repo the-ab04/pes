@@ -38,17 +38,17 @@ export default function StudentDashboard() {
           <div className="cards-grid">
             <div className="card">
               <h3>AI & Machine Learning</h3>
-              <p>Next Assignment Due: 14th June</p>
+              <p> Test 1 Due:10:10AM</p>
               <button className="btn">Submit Answers</button>
             </div>
             <div className="card">
               <h3>Web Development</h3>
-              <p>Project phase 2 submission open</p>
+              <p>Test 4 Due:15:00</p>
               <button className="btn">Submit Answers</button>
             </div>
             <div className="card">
               <h3>Data Structures</h3>
-              <p>Quiz scheduled for Monday</p>
+              <p>Test 2 Due:11:30AM</p>
               <button className="btn">Submit Answers</button>
             </div>
           </div>
