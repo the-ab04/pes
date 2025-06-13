@@ -1,23 +1,34 @@
-import express, { Request, Response } from 'express';
-import cors from 'cors';
+import express from 'express';
+import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import connectDB from './config/db.ts';
 import adminRoutes from "./routes/adminRoutes.js";
+import courseRoutes from './routes/course.routes';
 
 dotenv.config();
 
-connectDB();
-
-
 const app = express();
-app.use(cors());
+const PORT = process.env.PORT || 5000;
+
 app.use(express.json());
 
-app.get('/', (_req: Request, res: Response) => {
-  res.send('PES Backend is running');
+// Default route
+app.get('/', (_req, res) => {
+  res.send('Hello from the backend!');
 });
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
-app.use("/api/admin", adminRoutes);
 
+app.use("/api/admin", adminRoutes);
+//course routes
+app.use('/api/courses', courseRoutes);
+
+mongoose
+  .connect(process.env.MONGO_URI || '')
+  .then(() => {
+    console.log('Connected to MongoDB');
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+    });
+  })
+  .catch(err => {
+    console.error('MongoDB connection error:', err);
+  });
