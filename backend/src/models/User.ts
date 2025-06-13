@@ -1,5 +1,5 @@
 import { Schema, model, Document } from "mongoose";
-
+import bcrypt from "bcryptjs";
 export type Role = 'admin' | 'teacher' | 'ta' | 'student';
 
 export interface IUser extends Document {
@@ -9,6 +9,7 @@ export interface IUser extends Document {
   role: Role;
   enrolledCourses: string[];
   reputationScore: number;
+  comparePassword(candidatePassword: string): Promise<boolean>;
 }
 
 const userSchema = new Schema<IUser>({
@@ -20,4 +21,7 @@ const userSchema = new Schema<IUser>({
   reputationScore: { type: Number, default: 0 },
 });
 
+userSchema.methods.comparePassword = async function (plain: string): Promise<boolean> {
+  return bcrypt.compare(plain, this.password);
+};
 export const User = model<IUser>('User', userSchema);

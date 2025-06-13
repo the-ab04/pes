@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import adminRoutes from "./routes/adminRoutes.js";
 import courseRoutes from './routes/course.routes';
 
 dotenv.config();
@@ -15,6 +16,8 @@ app.get('/', (_req, res) => {
   res.send('Hello from the backend!');
 });
 
+
+app.use("/api/admin", adminRoutes);
 //course routes
 app.use('/api/courses', courseRoutes);
 
