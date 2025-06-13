@@ -1,4 +1,5 @@
 import { Schema, model, Document } from "mongoose";
+console.log('Course model loaded');
 
 export interface ICourse extends Document {
   name: string;

@@ -1,4 +1,13 @@
-import express from 'express';
+
+import express from "express";
+import connectDB from "./config/db.ts";
+import studentRoutes from "./routes/student/student.routes.ts";
+import "./models/Course.ts";
+import "./models/Batch.ts";
+import "./models/Exam.ts";
+import "./models/User.ts";
+import "./jobs/evaluationReminder.job.ts";
+import authRoutes from './routes/authorization/auth.routes.ts';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import adminRoutes from "./routes/adminRoutes.js";
@@ -11,12 +20,13 @@ const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
 
-// Default route
+
 app.get('/', (_req, res) => {
   res.send('Hello from the backend!');
 });
 
-
+app.use("/api/student", studentRoutes);
+app.use('/api/auth', authRoutes);
 app.use("/api/admin", adminRoutes);
 //course routes
 app.use('/api/courses', courseRoutes);
