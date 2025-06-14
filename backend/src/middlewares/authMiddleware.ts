@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
 import { User } from "../models/User.js";
 
+
 export const authMiddleware = async (req: any, res: Response, next: NextFunction): Promise<void> => {
   const token = req.headers.authorization?.split(" ")[1];
   if (!token) {
@@ -11,14 +12,13 @@ export const authMiddleware = async (req: any, res: Response, next: NextFunction
 
   try {
     const decoded: any = jwt.verify(token, process.env.JWT_SECRET!);
-    const user = await User.findById(decoded.id);
-
-    if (!user) {
-      res.status(401).json({ message: "User not found" });
-      return;
+    // Uncomment and enable this line:
+    req.user = await User.findById(decoded.id);
+    
+    if (!req.user) {
+      return res.status(404).json({ message: "User not found" });
     }
-
-    req.user = user;
+   
     next();
   } catch (err) {
     res.status(401).json({ message: "Invalid token" });
