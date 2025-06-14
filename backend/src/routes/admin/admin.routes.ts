@@ -16,7 +16,7 @@ import { authorizeRoles } from "../../middlewares/authorizeRoles.js";
 const router = express.Router();
 
 
-
+//kept few middleware in comments for testing purpose
 //Course operations
 router.post(
   "/courses",
