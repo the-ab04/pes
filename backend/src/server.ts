@@ -9,6 +9,7 @@ import "./models/User.ts";
 import "./models/Flag.ts"; // Make sure Flag model is imported
 import "./jobs/evaluationReminder.job.ts";
 import authRoutes from './routes/authorization/auth.routes.ts';
+import adminroutes from './routes/admin/admin.routes.ts'
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -19,6 +20,7 @@ app.use(express.json());
 connectDB();
 
 // Routes
+app.use("/api/admin",adminroutes);
 app.use("/api/student", studentRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/ta', taRoutes); // Add TA routes
