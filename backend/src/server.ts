@@ -7,6 +7,7 @@ import "./models/Exam.ts";
 import "./models/User.ts";
 import "./jobs/evaluationReminder.job.ts";
 import authRoutes from './routes/authorization/auth.routes.ts';
+import adminroutes from './routes/admin/admin.routes.ts'
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -19,6 +20,8 @@ connectDB();
 // Student Routes
 app.use("/api/student", studentRoutes);
 app.use('/api/auth', authRoutes);
+//admin routes
+app.use("/api/admin",adminroutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
