@@ -10,6 +10,9 @@ import "./models/Flag.ts"; // Make sure Flag model is imported
 import "./jobs/evaluationReminder.job.ts";
 import authRoutes from './routes/authorization/auth.routes.ts';
 import adminroutes from './routes/admin/admin.routes.ts'
+import dotenv from "dotenv";
+dotenv.config();
+
 
 const app = express();
 const PORT = process.env.PORT || 5000;
