@@ -1,5 +1,7 @@
 import { Router } from 'express';
 import catchAsync from '../../utils/catchAsync.ts';
+import { authMiddleware } from "../../middlewares/authMiddleware.js";      
+import { authorizeRoles } from "../../middlewares/authorizeRoles.js";     
 
 import {
   getAllStudents,
@@ -12,10 +14,15 @@ import {
 
 const router = Router();
 
-router.get('/', catchAsync(getAllStudents));
-router.get('/:id', catchAsync(getStudentById));
-router.post('/', catchAsync(createStudent));
-router.put('/:id', catchAsync(updateStudent));
-router.delete('/:id', catchAsync(deleteStudent));
+router.get('/', authMiddleware,
+  authorizeRoles("admin"), catchAsync(getAllStudents));
+router.get('/:id', authMiddleware,
+  authorizeRoles("admin"), catchAsync(getStudentById));
+router.post('/',  authMiddleware,
+  authorizeRoles("admin"),catchAsync(createStudent));
+router.put('/:id',  authMiddleware,
+  authorizeRoles("admin"),catchAsync(updateStudent));
+router.delete('/:id',  authMiddleware,
+  authorizeRoles("admin"),catchAsync(deleteStudent));
 
 export default router;

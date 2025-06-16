@@ -1,24 +1,19 @@
 import express from "express";
-import dotenv from "dotenv";
 import connectDB from "./config/db.ts";
-
 import studentRoutes from "./routes/student/student.routes.ts";
-import taRoutes from "./routes/ta/ta.routes.ts";
-import authRoutes from "./routes/authorization/auth.routes.ts";
-import adminroutes from './routes/admin/admin.routes.ts';
-import studentadminRoutes from './routes/admin/student_admin.routes.ts'; // New addition
-import teacherRoutes from './routes/admin/teacher.routes.ts';
-
-// Models
+import taRoutes from "./routes/ta/ta.routes.ts"; // Add this import
 import "./models/Course.ts";
 import "./models/Batch.ts";
 import "./models/Exam.ts";
 import "./models/User.ts";
-import "./models/Flag.ts";
-
-// Jobs
+import "./models/Flag.ts"; // Make sure Flag model is imported
 import "./jobs/evaluationReminder.job.ts";
+import authRoutes from './routes/authorization/auth.routes.ts';
+import adminroutes from './routes/admin/admin.routes.ts';
+import adminstudentroutes from './routes/admin/student_admin.routes.ts';
+import adminteachroutes from './routes/admin/teacher.routes.ts';
 
+import dotenv from "dotenv";
 dotenv.config();
 
 const app = express();
@@ -30,17 +25,13 @@ app.use(express.json());
 connectDB();
 
 // Routes
-app.use("/api/admin", adminroutes);
+app.use("/api/admin",adminroutes);
+app.use("/api/admin/student",adminstudentroutes);
+app.use("/api/admin/teachers",adminteachroutes);
 app.use("/api/student", studentRoutes);
-app.use("/api/studentadmin", studentadminRoutes);
-app.use("/api/auth", authRoutes);
-app.use("/api/ta", taRoutes);
-app.use('/api/teachers', teacherRoutes);
-
-// Default route
-app.get("/", (_req, res) => {
-  res.send("Hello from the backend!");
-});
+app.use('/api/auth', authRoutes);
+app.use('/api/ta', taRoutes); 
+// Add TA routes
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
