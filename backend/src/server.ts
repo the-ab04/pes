@@ -6,7 +6,8 @@ import studentRoutes from "./routes/student/student.routes.ts";
 import taRoutes from "./routes/ta/ta.routes.ts";
 import authRoutes from "./routes/authorization/auth.routes.ts";
 import adminroutes from './routes/admin/admin.routes.ts';
-import courseRoutes from './routes/admin/student.routes.ts'; // New addition
+import studentadminRoutes from './routes/admin/student_admin.routes.ts'; // New addition
+import teacherRoutes from './routes/admin/teacher.routes.ts';
 
 // Models
 import "./models/Course.ts";
@@ -31,9 +32,10 @@ connectDB();
 // Routes
 app.use("/api/admin", adminroutes);
 app.use("/api/student", studentRoutes);
+app.use("/api/studentadmin", studentadminRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/ta", taRoutes);
-app.use("/api/courses", courseRoutes); // New addition
+app.use('/api/teachers', teacherRoutes);
 
 // Default route
 app.get("/", (_req, res) => {
