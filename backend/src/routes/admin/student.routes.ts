@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import catchAsync from '../utils/catchAsync';
+import catchAsync from '../../utils/catchAsync.ts';
 
 import {
   getAllStudents,
@@ -7,7 +7,7 @@ import {
   createStudent,
   updateStudent,
   deleteStudent,
-} from '../controllers/student.controller';
+} from '../../controllers/admin/student.controller.ts';
 
 
 const router = Router();
