@@ -6,6 +6,7 @@ import jwt from "jsonwebtoken";
 
 
 
+
 // Add a new course
 export const addCourse = async (req: Request, res: Response): Promise<void> => {
   try {
